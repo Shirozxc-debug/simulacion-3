@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Matias Santelices">
+    <title>Video Stream</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img class="images1" src="static/images/youtube.png" alt="youtube">
+            <h1>Video<span class="color-logo">Stream</span></h1>
+        </div>
+
+        <nav class="nav">
+            <a class="a-nav active" href="#">Inicio</a>
+            <a class="a-nav" href="#">Explorar</a>
+            <a class="a-nav" href="#">Mi lista</a>
+        </nav>
+
+        <div class="buscador">
+            <input class="buscar" type="text" placeholder="Buscar">
+            <img class="images2" src="static/images/lupa.png" alt="lupa">
+            <img class="images2" src="static/images/campana.png" alt="campana">
+            <img class="images2" src="static/images/user-icon.png" alt="user-icon">
+        </div>
+    </header>
+
+    <!-- Layout Principal -->
+    <main class="container">
+        <!-- Columna Izquierda: Video principal y detalles -->
+        <section class="seccion-video">
+            <div class="video-caja">
+                <video class="video" src="static/video/ejemplo.mp4" controls></video>
+                <div class="video-info">
+                    <h2>Lagos y montañas</h2>
+                    <p class="meta-data">95 mil visualizaciones ● 10 abr 2024</p>
+                </div>
+            </div>
+
+            <!-- Interacción: Likes, Compartir -->
+            <div class="click-me-gusta">
+                <div class="me-gusta">
+                    <button class="btn-action"><img class="images3" src="static/images/like-icon (1).png" alt="like"> <span>4,8 K</span></button>
+                    <button class="btn-action"><img class="images3" src="static/images/dislike.png" alt="dislike"> <span>120</span></button>
+                    <button class="btn-action"><img class="images3" src="static/images/compartir.png" alt="compartir"> <span>Compartir</span></button>
+                    <button class="btn-action"><img class="images3" src="static/images/añadir.png" alt="añadir"> <span>Añadir a la cola</span></button>
+                    <button class="btn-action"><span>●●●</span></button>
+                </div>
+            </div>
+
+            <!-- Canal y Suscripción -->
+            <div class="click-suscribirse">
+                <div class="canal-info">
+                    <img class="images4 avatar" src="static/images/user-icon.png" alt="user-icon">
+                    <div>
+                        <h3>VideoStream</h3>
+                        <p class="subscriptores-count">1.2 M suscriptores</p>
+                    </div>
+                </div>
+                <button class="btn-suscribirse">Suscribirse</button>
+            </div>
+
+            <!-- Descripción -->
+            <div class="info-mostrar-mas">
+                <p>Un recorrido por los lagos más hermosos de la Patagonia y sus alrededores. Consejos, rutas y paisajes imperdibles.</p>
+                <button class="btn-mostrar-mas">Mostrar más ▼</button>
+            </div>
+        </section>
+
+        <!-- Columna Derecha: Cola y Recomendados -->
+        <aside class="seccion-derecho">
+            <div class="header-cola">
+                <h3>Siguiente en la cola</h3>
+                <button class="btn-limpiar">Limpiar cola</button>
+            </div>
+
+            <div class="video-cola">
+                <div class="tarjeta-video-lateral">
+                    <img class="images7" src="static/images/La-patagonia.png" alt="La-patagonia">
+                    <div class="cajas">
+                        <h4>Explorando la Patagonia</h4>
+                        <p>VideoStream</p>
+                        <p class="views">120 mil visualizaciones</p>
+                    </div>
+                    <img class="images7" class="images5 btn-remove" src="static/images/X-icon-removebg-preview.png" alt="x">
+                </div>
+
+                <div class="tarjeta-video-lateral">
+                    <img class="images7" src="static/images/Comida-callejera.png" alt="Comida-callejera">
+                    <div class="cajas">
+                        <h4>Comida callejera</h4>
+                        <p>VideoStream</p>
+                        <p class="views">98 mil visualizaciones</p>
+                    </div>
+                    <img class="images7" class="images5 btn-remove" src="static/images/X-icon-removebg-preview.png" alt="x">
+                </div>
+            </div>
+
+            <div class="video-cola">
+                <div class="tarjeta-video-lateral">
+                    <img class="images7" src="static/images/Ciudades-del-mundo.png" alt="Ciudades-del-mundo">
+                    <div class="cajas">
+                        <h4>Ciudades del mundo</h4>
+                        <p>VideoStream</p>
+                        <p class="views">210 mil visualizaciones</p>
+                    </div>
+                    <img class="images7" class="images5 btn-remove" src="static/images/X-icon-removebg-preview.png" alt="x">
+                </div>
+
+            <h3>Recomendados</h3>
+            <div class="recomendados">
+                <div class="tarjeta-video-lateral">
+                    <img class="images7" src="static/images/Rutas-de-trekking.png" alt="Rutas-de-trekking">
+                    <div class="cajas">
+                        <h4>Rutas de trekking</h4>
+                        <p>VideoStream</p>
+                        <p class="views">80 mil visualizaciones</p>
+                    </div>
+                    <img class="images6 btn-add" src="static/images/añadir.png" alt="+">
+                </div>
+                <div class="tarjeta-video-lateral">
+                    <img class="images7" src="static/images/Fauna-patagonica.png" alt="Fauna-patagonica">
+                    <div class="cajas">
+                        <h4>Fauna patagónica</h4>
+                        <p>VideoStream</p>
+                        <p class="views">60 mil visualizaciones</p>
+                    </div>
+                    <img class="images7" class="images6 btn-add" src="static/images/añadir.png" alt="+">
+                </div>
+                <div class="tarjeta-video-lateral">
+                    <img class="images7"src="static/images/Atardeceres-increibles.png" alt="Atardeceres">
+                    <div class="cajas">
+                        <h4>Atardeceres increibles</h4>
+                        <p>VideoStream</p>
+                        <p class="views">72 mil visualizaciones</p>
+                    </div>
+                    <img class="images6 btn-add" src="static/images/añadir.png" alt="+">
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Sección Inferior: Más videos -->
+    <section class="seccion-mas-videos">
+        <h3>Más videos</h3>
+        <div class="mas-video">
+            <div class="tarjeta-video-grid">
+                <img class="images7" src="static/images/Rutas-de-trekking.png" alt="Rutas-de-trekking">
+                <h4>Rutas de trekking</h4>
+                <p>80 mil visualizaciones</p>
+            </div>
+            <div class="tarjeta-video-grid">
+                <img class="images7" src="static/images/Lagos-y-montañas.png" alt="Lagos-y-montañas">
+                <h4>Lagos y montañas</h4>
+                <p>95 mil visualizaciones</p>
+            </div>
+            <div class="tarjeta-video-grid">
+                <img class="images7" src="static/images/Fauna-patagonica.png" alt="Fauna-patagonica">
+                <h4>Fauna patagónica</h4>
+                <p>60 mil visualizaciones</p>
+            </div>
+            <div class="tarjeta-video-grid">
+                <img class="images7" src="static/images/Consejos-para-viajar.png" alt="Consejos-para-viajar">
+                <h4>Consejos para viajar</h4>
+                <p>110 mil visualizaciones</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>

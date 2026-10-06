@@ -1,0 +1,288 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    padding: 15px 30px;
+    background-color: #f9f9f9;
+    color: #0f0f0f;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.images1 {
+    height: 30px;
+}
+
+.color-logo {
+    color: red;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.a-nav {
+    text-decoration: none;
+    color: #606060;
+    font-weight: bold;
+}
+
+.a-nav.active {
+    color: #0f0f0f;
+    border-bottom: 2px solid #0f0f0f;
+}
+
+.buscador {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.buscar {
+    height: 36px;
+    width: 250px;
+    padding: 0 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.images2 {
+    height: 22px;
+    cursor: pointer;
+}
+
+/* Disposición general en 2 columnas */
+.container {
+    display: flex;
+    gap: 25px;
+}
+
+/* Sección Video Principal */
+.seccion-video {
+    flex: 2;
+}
+
+.video {
+    width: 100%;
+    max-height: 300px;
+    height: 300px;
+    background-color: #000;
+}
+
+.video-info h2 {
+    margin-top: 10px;
+    font-size: 1.3rem;
+}
+
+.meta-data {
+    color: #606060;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+/* Botones de Me gusta y opciones */
+.click-me-gusta {
+    display: flex;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.me-gusta {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #f2f2f2;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-action:hover {
+    background: #e5e5e5;
+}
+
+.images3 {
+    height: 18px;
+}
+
+.images7 {
+    height: 100px;
+    width: 200px;
+}
+
+/* Suscripción */
+.click-suscribirse {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.canal-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.subscriptores-count {
+    color: #606060;
+    font-size: 0.85rem;
+}
+
+.btn-suscribirse {
+    height: 36px;
+    padding: 0 16px;
+    background-color: #FA100F;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.info-mostrar-mas {
+    background-color: #f2f2f2;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 30px;
+}
+
+.btn-mostrar-mas {
+    border: none;
+    background: none;
+    font-weight: bold;
+    margin-top: 5px;
+    cursor: pointer;
+    color: #065fd4;
+}
+
+/* Sidebar Derecha */
+.seccion-derecho {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header-cola {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-limpiar {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.tarjeta-video-lateral {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.thumb-video {
+    width: 120px;
+    height: 70px;
+    background-color: #ccc;
+    object-fit: cover;
+}
+
+.cajas {
+    flex: 1;
+}
+
+.cajas h4 {
+    font-size: 0.9rem;
+}
+
+.cajas p {
+    font-size: 0.8rem;
+    color: #606060;
+}
+
+.btn-remove, .btn-add {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.images7 {
+    height: 100px;
+    width: 300px;
+}
+
+/* Fila de Más Videos */
+.seccion-mas-videos {
+    margin-top: 30px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 20px;
+}
+
+.mas-video {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.tarjeta-video-grid {
+    flex: 1;
+}
+
+.thumb-video-grid {
+    width: 100%;
+    height: 120px;
+    background-color: #ccc;
+}
+
+.tarjeta-video-grid h4 {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.tarjeta-video-grid p {
+    font-size: 0.8rem;
+    color: #606060;
+}
