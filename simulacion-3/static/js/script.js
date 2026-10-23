@@ -1,101 +1,172 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. Incrementar / decrementar contador de "Me gusta"
-    const btnLike = document.querySelector('#btn-like');
-    const contadorLikes = document.querySelector('#contador-likes');
-    let likesCount = 4800; // Representa 4,8 K
-    let dioLike = false;
-
-    if (btnLike && contadorLikes) {
-        btnLike.addEventListener('click', () => {
-            if (!dioLike) {
-                likesCount++;
-                contadorLikes.textContent = (likesCount / 1000).toFixed(1).replace('.', ',') + ' K';
-                dioLike = true;
+    // 1. SUMAR "ME GUSTA"
+    const likeBtn = document.querySelector('.me-gusta .btn-action:first-child');
+    if (likeBtn) {
+        let liked = false;
+        likeBtn.addEventListener('click', () => {
+            const spanCount = likeBtn.querySelector('span');
+            if (!liked) {
+                spanCount.textContent = '4,9 K';
+                likeBtn.classList.add('active');
+                liked = true;
             } else {
-                likesCount--;
-                contadorLikes.textContent = (likesCount / 1000).toFixed(1).replace('.', ',') + ' K';
-                dioLike = false;
+                spanCount.textContent = '4,8 K';
+                likeBtn.classList.remove('active');
+                liked = false;
             }
         });
     }
 
-    // 2. Botón "Suscribirse" (Suma suscriptor, cambia texto y color)
-    const btnSuscribirse = document.querySelector('#btn-suscribirse');
-    const contadorSuscriptores = document.querySelector('#contador-suscriptores');
-    let suscrito = false;
+    // 2. BOTÓN DE SUSCRIBIRSE
+    const btnSuscribirse = document.querySelector('.btn-suscribirse');
+    const subCount = document.querySelector('.subscriptores-count');
 
-    if (btnSuscribirse && contadorSuscriptores) {
+    if (btnSuscribirse) {
+        let suscrito = false;
         btnSuscribirse.addEventListener('click', () => {
             if (!suscrito) {
                 btnSuscribirse.textContent = 'Suscrito';
                 btnSuscribirse.classList.add('suscrito');
-                contadorSuscriptores.textContent = '1.200.001 suscriptores';
+                if (subCount) {
+                    subCount.textContent = '1.200.001 suscriptores';
+                }
                 suscrito = true;
             } else {
                 btnSuscribirse.textContent = 'Suscribirse';
                 btnSuscribirse.classList.remove('suscrito');
-                contadorSuscriptores.textContent = '1,2 M de suscriptores';
+                if (subCount) {
+                    subCount.textContent = '1.2 M suscriptores';
+                }
                 suscrito = false;
             }
         });
     }
 
-    // 3. Añadir a la cola de reproducción
-    const btnsAnadirCola = document.querySelectorAll('.btn-add-cola');
-    const contenedorCola = document.querySelector('#lista-cola');
+    // 3. AÑADIR A LA COLA Y NOTIFICACIÓN
+    const containerCola = document.querySelector('.seccion-derecho .video-cola');
 
-    btnsAnadirCola.forEach(btn => {
+    // Función auxiliar para crear y mostrar una alerta flotante
+    function mostrarNotificacion(mensaje) {
+        let notif = document.querySelector('.notificación-toast');
+        if (!notif) {
+            notif = document.createElement('div');
+            notif.className = 'notificacion-toast';
+            document.body.appendChild(notif);
+        }
+        notif.textContent = mensaje;
+        notif.classList.add('show');
+        setTimeout(() => {
+            notif.classList.remove('show');
+        }, 3000);
+    }
+
+    // Botones de añadir (+) en los recomendados
+    const btnsAdd = document.querySelectorAll('.btn-add');
+    btnsAdd.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const tarjeta = e.target.closest('.tarjeta-video-lateral');
-            
-            if (tarjeta && contenedorCola) {
-                // Clonar tarjeta para añadirla a la cola
-                const clon = tarjeta.cloneNode(true);
-                
-                // Cambiar el icono de (+) por la (X) de eliminar usando querySelector
-                const icono = clon.querySelector('img');
-                if (icono) {
-                    icono.src = 'static/images/X-icon-removebg-preview.png';
-                    icono.classList.remove('btn-add-cola');
-                    icono.classList.add('btn-remove-cola');
-                    
-                    // Evento para eliminar elemento de la cola al hacer click en la X
-                    icono.addEventListener('click', () => clon.remove());
-                }
+            if (tarjeta && containerCola) {
+                const titulo = tarjeta.querySelector('h4').textContent;
+                const canal = tarjeta.querySelector('.cajas p:not(.views)').textContent;
+                const views = tarjeta.querySelector('.views').textContent;
+                const imgSrc = tarjeta.querySelector('.images7').src;
 
-                // Activar comportamiento hover en el video clonado
-                const videoClon = clon.querySelector('video');
-                if (videoClon) configurarHoverVideo(videoClon);
+                // Crear nueva tarjeta para la cola
+                const nuevaTarjeta = document.createElement('div');
+                nuevaTarjeta.className = 'tarjeta-video-lateral';
+                nuevaTarjeta.innerHTML = `
+                    <img class="images7" src="${imgSrc}" alt="${titulo}">
+                    <div class="cajas">
+                        <h4>${titulo}</h4>
+                        <p>${canal}</p>
+                        <p class="views">${views}</p>
+                    </div>
+                    <img class="images5 btn-remove" src="static/images/X-icon-removebg-preview.png" alt="x">
+                `;
 
-                contenedorCola.appendChild(clon);
+                // Asignar evento para borrar
+                nuevaTarjeta.querySelector('.btn-remove').addEventListener('click', function () {
+                    nuevaTarjeta.remove();
+                });
+
+                containerCola.appendChild(nuevaTarjeta);
+                mostrarNotificacion(`✔ Video añadido a la cola: ${titulo}`);
             }
         });
     });
 
-    // Botón Limpiar cola
-    const btnLimpiarCola = document.querySelector('#btn-limpiar-cola');
-    if (btnLimpiarCola && contenedorCola) {
-        btnLimpiarCola.addEventListener('click', () => {
-            contenedorCola.innerHTML = '';
+    // 4. ELIMINAR DE LA COLA Y LIMPIAR
+    document.querySelectorAll('.btn-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tarjeta = e.target.closest('.tarjeta-video-lateral');
+            if (tarjeta) tarjeta.remove();
+        });
+    });
+
+    const btnLimpiar = document.querySelector('.btn-limpiar');
+    if (btnLimpiar && containerCola) {
+        btnLimpiar.addEventListener('click', () => {
+            containerCola.innerHTML = '';
+            mostrarNotificacion('La cola de reproducción se ha limpiado.');
         });
     }
 
-    // 4. Reproducción automática al pasar el mouse (Hover) sin sonido y pausa al salir
-    const videosConHover = document.querySelectorAll('.seccion-derecho video, .mas-video video');
-
-    function configurarHoverVideo(video) {
-        video.muted = true; // Silenciado para permitir auto-play sin bloqueo del navegador
-        
-        video.addEventListener('mouseenter', () => {
-            video.play().catch(() => {}); // Reproduce al pasar el cursor
+    // 5. REPRODUCIR AL PASAR EL MOUSE
+    const tarjetasHover = document.querySelectorAll('.tarjeta-video-lateral, .tarjeta-video-grid');
+    tarjetasHover.forEach(tarjeta => {
+        tarjeta.addEventListener('mouseenter', () => {
+            // Simulación o control de reproducción visual si hay elementos <video> dentro
+            const videoPreview = tarjeta.querySelector('video');
+            if (videoPreview) {
+                videoPreview.muted = true;
+                videoPreview.play().catch(() => {});
+            }
         });
 
-        video.addEventListener('mouseleave', () => {
-            video.pause();
-            video.currentTime = 0; // Detiene y reinicia al salir
+        tarjeta.addEventListener('mouseleave', () => {
+            const videoPreview = tarjeta.querySelector('video');
+            if (videoPreview) {
+                videoPreview.pause();
+                videoPreview.currentTime = 0;
+            }
+        });
+    });
+
+// MOSTRAR MÁS  Y MOSTRAR MENOS DESCRIPCIÓN
+    const btnMostrarMas = document.querySelector('.btn-mostrar-mas');
+    const infoDescripcion = document.querySelector('.info-mostrar-mas p');
+
+    if (btnMostrarMas && infoDescripcion) {
+        let expandido = false;
+        btnMostrarMas.addEventListener('click', () => {
+            if (!expandido) {
+                infoDescripcion.style.webkitLineClamp = 'unset';
+                infoDescripcion.style.display = 'block';
+                btnMostrarMas.textContent = 'Mostrar menos ▲';
+                expandido = true;
+            } else {
+                infoDescripcion.style.webkitLineClamp = '2';
+                btnMostrarMas.textContent = 'Mostrar más ▼';
+                expandido = false;
+            }
         });
     }
 
-    videosConHover.forEach(video => configurarHoverVideo(video));
+    // 7. BUSCADOR
+    const inputBuscar = document.querySelector('.buscar');
+    if (inputBuscar) {
+        inputBuscar.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const tarjetas = document.querySelectorAll('.tarjeta-video-lateral, .tarjeta-video-grid');
+
+            tarjetas.forEach(tarjeta => {
+                const titulo = tarjeta.querySelector('h4') ? tarjeta.querySelector('h4').textContent.toLowerCase() : '';
+                if (titulo.includes(query)) {
+                    tarjeta.style.display = '';
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
+        });
+    }
 });
